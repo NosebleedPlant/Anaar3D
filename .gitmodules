@@ -1,12 +1,12 @@
-[submodule "Dependencies/glfw"]
+[submodule "external/glfw"]
 	path = vendor/glfw
 	url = https://github.com/glfw/glfw.git
-[submodule "Dependencies/glm"]
-	path = Dependencies/glm
+[submodule "external/glm"]
+	path = external/glm
 	url = https://github.com/g-truc/glm.git
-[submodule "Dependencies/imgui"]
-	path = Dependencies/imgui
+[submodule "external/imgui"]
+	path = external/imgui
 	url = https://github.com/ocornut/imgui
-[submodule "Dependencies/implot"]
-	path = Dependencies/implot
+[submodule "external/implot"]
+	path = external/implot
 	url = https://github.com/epezent/implot.git
