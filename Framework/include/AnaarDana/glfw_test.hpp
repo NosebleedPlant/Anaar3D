@@ -1,0 +1,3 @@
+namespace AnaarDana{
+    int makeContext ();
+}
