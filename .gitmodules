@@ -1,5 +1,5 @@
 [submodule "external/glfw"]
-	path = vendor/glfw
+	path = external/glfw
 	url = https://github.com/glfw/glfw.git
 [submodule "external/imgui"]
 	path = external/imgui
