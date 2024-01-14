@@ -3,6 +3,8 @@ project(AnaarFramework VERSION 0.0)
 file(GLOB SOURCE_FILES CONFIGURE_DEPENDS 
     src/*.cpp 
     src/*.hpp
+    src/math/*.cpp 
+    src/math/*.hpp
 )
 
 add_library(${PROJECT_NAME} STATIC ${SOURCE_FILES})
