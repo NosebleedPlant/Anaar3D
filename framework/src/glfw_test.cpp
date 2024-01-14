@@ -1,8 +1,9 @@
 #include <glad/glad.h>
 #include <GLFW/glfw3.h>
-
 #include <iostream>
+#include "glfw_test.hpp"
 
+// int AnaarDana::makeContext(){
 void framebuffer_size_callback(GLFWwindow* window, int width, int height);
 void processInput(GLFWwindow *window);
 
@@ -23,8 +24,7 @@ const char *fragmentShaderSource = "#version 330 core\n"
     "   FragColor = vec4(1.0f, 0.5f, 0.2f, 1.0f);\n"
     "}\n\0";
 
-int main()
-{
+int Anaar::makeContext(){
     // glfw: initialize and configure
     // ------------------------------
     glfwInit();
