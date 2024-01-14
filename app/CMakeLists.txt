@@ -1,8 +1,9 @@
 cmake_minimum_required(VERSION 3.28)
 project(AnaarApp VERSION 0.0)
 
-set(SOURCE_FILES 
-    src/test.cpp
+file(GLOB SOURCE_FILES CONFIGURE_DEPENDS 
+    src/*.cpp 
+    src/*.hpp
 )
 
 add_executable(${PROJECT_NAME} main.cpp ${SOURCE_FILES})
