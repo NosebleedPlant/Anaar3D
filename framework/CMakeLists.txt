@@ -14,7 +14,7 @@ target_include_directories(${PROJECT_NAME} PUBLIC
 )
 
 target_precompile_headers(${PROJECT_NAME} PUBLIC
-    src/apch.hpp
+    include/Anaar/_pch.hpp
 )
 
 
