@@ -23,7 +23,7 @@ int anaar_framework::CreateAFContext_IMGUI()
 
     const char* glsl_version = "#version 130"; //imgui still runs on opengl 3.0 so we gotta keep this low
     glfwWindowHint(GLFW_CONTEXT_VERSION_MAJOR, 4);
-    glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, 2);
+    glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, 6); //FUCKED cause of wsl
 
     // Create window with graphics context
     GLFWwindow* window = glfwCreateWindow(1280, 720, "Dear ImGui GLFW+OpenGL3 example", nullptr, nullptr);
