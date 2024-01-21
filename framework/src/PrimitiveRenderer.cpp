@@ -99,35 +99,45 @@ int anaar_framework::CreateAFContext_Raw()
     glDeleteShader(vertexShader);
     glDeleteShader(fragmentShader);
 
-    float vertices[] = {
-     0.5f,  0.5f, 0.0f,  // top right
-     0.5f, -0.5f, 0.0f,  // bottom right
-    -0.5f, -0.5f, 0.0f,  // bottom left
-    -0.5f,  0.5f, 0.0f   // top left 
-    };
-    unsigned int indices[] = {  // note that we start from 0!
-        0, 1, 3,   // first triangle
-        1, 2, 3    // second triangle
+    // float vertices[] = {
+    //  0.5f,  0.5f, 0.0f,  // top right
+    //  0.5f, -0.5f, 0.0f,  // bottom right
+    // -0.5f, -0.5f, 0.0f,  // bottom left
+    // -0.5f,  0.5f, 0.0f   // top left 
+    // };
+    // unsigned int indices[] = {  // note that we start from 0!
+    //     0, 1, 3,   // first triangle
+    //     1, 2, 3    // second triangle
+    // };
+
+    float two_triangles[] = {
+        -1.0f, -0.5f, 0.0f,
+        0.0f, -0.5f, 0.0f,
+        -0.5f,  0.5f, 0.0f,
+
+        0.0f, -0.5f, 0.0f,
+        1.0f, -0.5f, 0.0f,
+        0.5f, 0.5f, 0.0f
     };
 
     unsigned int VAO;                                                             
-    glGenVertexArrays(1, &VAO);                                                   // Make VAO
-    glBindVertexArray(VAO);                                                       // Bind VAO
+    glGenVertexArrays(1, &VAO);                                                         // Make VAO
+    glBindVertexArray(VAO);                                                             // Bind VAO
 
     unsigned int VBO;                                                                
-    glGenBuffers(1, &VBO);                                                        // Make VBO
-    glBindBuffer(GL_ARRAY_BUFFER, VBO);                                           // Bind VBO
-    glBufferData(GL_ARRAY_BUFFER, sizeof(vertices), vertices, GL_STATIC_DRAW);    // Feed data
-    glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 3 * sizeof(float), (void*)0); // Setup pointer so OpenGL can understand the buffer
-    glEnableVertexAttribArray(0);                                                 // Enable the Attrib array, important!
+    glGenBuffers(1, &VBO);                                                              // Make VBO
+    glBindBuffer(GL_ARRAY_BUFFER, VBO);                                                 // Bind VBO
+    glBufferData(GL_ARRAY_BUFFER, sizeof(two_triangles), two_triangles, GL_STATIC_DRAW);// Feed data
+    glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 3 * sizeof(float), (void*)0);       // Setup pointer so OpenGL can understand the buffer
+    glEnableVertexAttribArray(0);                                                       // Enable the Attrib array, important!
 
-    unsigned int EBO;
-    glGenBuffers(1, &EBO);
-    glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, EBO);
-    glBufferData(GL_ELEMENT_ARRAY_BUFFER, sizeof(indices), indices, GL_STATIC_DRAW);
+    // unsigned int EBO;
+    // glGenBuffers(1, &EBO);
+    // glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, EBO);
+    // glBufferData(GL_ELEMENT_ARRAY_BUFFER, sizeof(indices), indices, GL_STATIC_DRAW);
 
-    glBindBuffer(GL_ARRAY_BUFFER, 0);                                             // Unbind VBO
-    glBindVertexArray(0);                                                         // Unbind VAO
+    glBindBuffer(GL_ARRAY_BUFFER, 0);                                                   // Unbind VBO
+    glBindVertexArray(0);                                                               // Unbind VAO
 
 
     while (!glfwWindowShouldClose(window)) {
@@ -138,7 +148,8 @@ int anaar_framework::CreateAFContext_Raw()
 
         glUseProgram(shaderProgram);
         glBindVertexArray(VAO);
-        glDrawElements(GL_TRIANGLES, 6, GL_UNSIGNED_INT, 0);
+        // glDrawElements(GL_TRIANGLES, 6, GL_UNSIGNED_INT, 0);
+        glDrawArrays(GL_TRIANGLES, 0,6);
 
         glfwSwapBuffers(window);
         glfwPollEvents();
