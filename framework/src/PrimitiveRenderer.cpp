@@ -33,6 +33,13 @@ const char* fragmentShaderSource = "#version 330 core\n"
 "   FragColor = vec4(1.0f, 0.5f, 0.2f, 1.0f);\n"
 "}\n\0";
 
+const char* fragmentShader2Source = "#version 330 core\n"
+"out vec4 FragColor;\n"
+"void main()\n"
+"{\n"
+"   FragColor = vec4(1.0f, 0.863f, 0.0f, 1.0f);\n"
+"}\n\0";
+
 int anaar_framework::CreateAFContext_Raw()
 {
     if (!glfwInit()) {
@@ -63,15 +70,18 @@ int anaar_framework::CreateAFContext_Raw()
     char infoLog[512];
     
     unsigned int vertexShader;
-    unsigned int fragmentShader;
-    unsigned int shaderProgram;
+    unsigned int fragmentShader,fragmentShader2;
+    unsigned int shaderProgram,shaderProgram2;
 
     vertexShader = glCreateShader(GL_VERTEX_SHADER);
     fragmentShader = glCreateShader(GL_FRAGMENT_SHADER);
+    fragmentShader2 = glCreateShader(GL_FRAGMENT_SHADER);
     shaderProgram = glCreateProgram();
+    shaderProgram2 = glCreateProgram();
     
     glShaderSource(vertexShader, 1, &vertexShaderSource, NULL);
     glShaderSource(fragmentShader, 1, &fragmentShaderSource, NULL);
+    glShaderSource(fragmentShader2, 1, &fragmentShader2Source, NULL);
 
     glCompileShader(vertexShader);
     glGetShaderiv(vertexShader, GL_COMPILE_STATUS, &success);
@@ -87,9 +97,20 @@ int anaar_framework::CreateAFContext_Raw()
         std::cout << "ERROR::SHADER::VERTEX::COMPILATION_FAILED\n" << infoLog << std::endl;
     }
 
+    glCompileShader(fragmentShader2);
+    glGetShaderiv(fragmentShader2, GL_COMPILE_STATUS, &success);
+    if (!success) {
+        glGetShaderInfoLog(fragmentShader2, 512, NULL, infoLog);
+        std::cout << "ERROR::SHADER::VERTEX::COMPILATION_FAILED\n" << infoLog << std::endl;
+    }
+
     glAttachShader(shaderProgram, vertexShader);
     glAttachShader(shaderProgram, fragmentShader);
     glLinkProgram(shaderProgram);
+
+    glAttachShader(shaderProgram2, vertexShader);
+    glAttachShader(shaderProgram2, fragmentShader2);
+    glLinkProgram(shaderProgram2);
 
     glGetProgramiv(shaderProgram, GL_LINK_STATUS, &success);
     if (!success) {
@@ -98,6 +119,7 @@ int anaar_framework::CreateAFContext_Raw()
 
     glDeleteShader(vertexShader);
     glDeleteShader(fragmentShader);
+    glDeleteShader(fragmentShader2);
 
     // float vertices[] = {
     //  0.5f,  0.5f, 0.0f,  // top right
@@ -143,7 +165,7 @@ int anaar_framework::CreateAFContext_Raw()
     //Second Triangle
     glBindVertexArray(VAOs[1]);                                                         
     glBindBuffer(GL_ARRAY_BUFFER, VBOs[1]);                                             
-    
+
     glBufferData(GL_ARRAY_BUFFER, sizeof(triangle_b), triangle_b, GL_STATIC_DRAW);      
     glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 3 * sizeof(float), (void*)0);       
     glEnableVertexAttribArray(0);                                                       
@@ -167,6 +189,7 @@ int anaar_framework::CreateAFContext_Raw()
         glBindVertexArray(VAOs[0]);
         glDrawArrays(GL_TRIANGLES, 0,3);
 
+        glUseProgram(shaderProgram2);
         glBindVertexArray(VAOs[1]);
         glDrawArrays(GL_TRIANGLES, 0,3);
 
@@ -177,6 +200,7 @@ int anaar_framework::CreateAFContext_Raw()
     glDeleteVertexArrays(2, VAOs);
     glDeleteBuffers(2, VBOs);
     glDeleteProgram(shaderProgram);
+    glDeleteProgram(shaderProgram2);
 
     glfwTerminate();
     return 0;
