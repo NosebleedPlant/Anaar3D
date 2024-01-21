@@ -110,7 +110,7 @@ int anaar_framework::CreateAFContext_Raw()
     //     1, 2, 3    // second triangle
     // };
 
-    float two_triangles[] = {
+    float triangle_a[] = {
         -1.0f, -0.5f, 0.0f,
         0.0f, -0.5f, 0.0f,
         -0.5f,  0.5f, 0.0f,
@@ -120,16 +120,33 @@ int anaar_framework::CreateAFContext_Raw()
         0.5f, 0.5f, 0.0f
     };
 
-    unsigned int VAO;                                                             
-    glGenVertexArrays(1, &VAO);                                                         // Make VAO
-    glBindVertexArray(VAO);                                                             // Bind VAO
+    float triangle_b[] = {
+        0.0f, -0.5f, 0.0f,
+        1.0f, -0.5f, 0.0f,
+        0.5f, 0.5f, 0.0f
+    };
 
-    unsigned int VBO;                                                                
-    glGenBuffers(1, &VBO);                                                              // Make VBO
-    glBindBuffer(GL_ARRAY_BUFFER, VBO);                                                 // Bind VBO
-    glBufferData(GL_ARRAY_BUFFER, sizeof(two_triangles), two_triangles, GL_STATIC_DRAW);// Feed data
-    glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 3 * sizeof(float), (void*)0);       // Setup pointer so OpenGL can understand the buffer
-    glEnableVertexAttribArray(0);                                                       // Enable the Attrib array, important!
+    unsigned int VAOs[2];                                                             
+    glGenVertexArrays(2, VAOs);                                                         // Make VAO
+
+    unsigned int VBOs[2];                                                                
+    glGenBuffers(2, VBOs);                                                              // Make VBO
+    
+    //First Triangle
+    glBindVertexArray(VAOs[0]);                                                         
+    glBindBuffer(GL_ARRAY_BUFFER, VBOs[0]);                                             
+    
+    glBufferData(GL_ARRAY_BUFFER, sizeof(triangle_a), triangle_a, GL_STATIC_DRAW);      
+    glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 3 * sizeof(float), (void*)0);       
+    glEnableVertexAttribArray(0);                                                       
+
+    //Second Triangle
+    glBindVertexArray(VAOs[1]);                                                         
+    glBindBuffer(GL_ARRAY_BUFFER, VBOs[1]);                                             
+    
+    glBufferData(GL_ARRAY_BUFFER, sizeof(triangle_b), triangle_b, GL_STATIC_DRAW);      
+    glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 3 * sizeof(float), (void*)0);       
+    glEnableVertexAttribArray(0);                                                       
 
     // unsigned int EBO;
     // glGenBuffers(1, &EBO);
@@ -147,16 +164,18 @@ int anaar_framework::CreateAFContext_Raw()
         glClear(GL_COLOR_BUFFER_BIT);
 
         glUseProgram(shaderProgram);
-        glBindVertexArray(VAO);
-        // glDrawElements(GL_TRIANGLES, 6, GL_UNSIGNED_INT, 0);
-        glDrawArrays(GL_TRIANGLES, 0,6);
+        glBindVertexArray(VAOs[0]);
+        glDrawArrays(GL_TRIANGLES, 0,3);
+
+        glBindVertexArray(VAOs[1]);
+        glDrawArrays(GL_TRIANGLES, 0,3);
 
         glfwSwapBuffers(window);
         glfwPollEvents();
     }
     
-    glDeleteVertexArrays(1, &VAO);
-    glDeleteBuffers(1, &VBO);
+    glDeleteVertexArrays(2, VAOs);
+    glDeleteBuffers(2, VBOs);
     glDeleteProgram(shaderProgram);
 
     glfwTerminate();
