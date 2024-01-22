@@ -51,8 +51,8 @@ int anaar_framework::CreateAFContext_Raw()
     // "copy files cmake"
     // custom command in cmake seems to be the way to go
     Shader ourShader(
-        "/home/yarrow/Anaar/framework/shaders/test.vs", 
-        "/home/yarrow/Anaar/framework/shaders/test.fs"
+        "/home/yarrow/Anaar/framework/resources/shaders/test.vs", 
+        "/home/yarrow/Anaar/framework/resources/shaders/test.fs"
     );
 
     float vertices[] = {
