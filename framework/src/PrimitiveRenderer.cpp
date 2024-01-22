@@ -3,6 +3,7 @@
 #include <imgui_impl_glfw.h>
 #include <imgui_impl_opengl3.h>
 #include <stdio.h>
+#include <cmath>
 
 #include <glad/glad.h>
 #include <GLFW/glfw3.h>
@@ -98,6 +99,8 @@ int anaar_framework::CreateAFContext_Raw()
         glClear(GL_COLOR_BUFFER_BIT);
 
         ourShader.use();
+        float timeValue = glfwGetTime();
+        ourShader.setFloat("offset", sin(timeValue));
         glBindVertexArray(VAO);
         glDrawElements(GL_TRIANGLES, 6, GL_UNSIGNED_INT, 0);
 
