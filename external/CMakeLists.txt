@@ -43,3 +43,15 @@ target_sources(implot PRIVATE
 )
 target_include_directories(implot PUBLIC "${IMPLOT_DIR}")
 target_link_libraries(implot PUBLIC imgui)
+
+project(stb)
+add_library(stb)
+set(STB_DIR ${CMAKE_CURRENT_SOURCE_DIR}/stb)
+file(GLOB STB_SRC CONFIGURE_DEPENDS 
+    ${CMAKE_CURRENT_SOURCE_DIR}/stb/*.c
+)
+target_sources(stb PRIVATE 
+    ${STB_SRC}
+)
+target_include_directories(stb PUBLIC "${STB_DIR}")
+target_link_libraries(stb PUBLIC imgui)
