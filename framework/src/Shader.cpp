@@ -1,5 +1,4 @@
 #include <glad/glad.h>
-
 #include "Shader.hpp"
 
 Shader::Shader(const char* vertexPath, const char* fragmentPath){
@@ -94,4 +93,9 @@ void Shader::checkCompileErrors(unsigned int shader, std::string type){
             std::cout << "ERROR::PROGRAM_LINKING_ERROR of type: " << type << "\n" << infoLog << "\n -- --------------------------------------------------- -- " << std::endl;
         }
     }
+}
+
+#include <glm/glm.hpp>
+void Shader::setMat4(const std::string &name, const glm::mat4 &mat) const {
+    glUniformMatrix4fv(glGetUniformLocation(ID, name.c_str()), 1, GL_FALSE, &mat[0][0]);
 }
