@@ -26,6 +26,7 @@ add_library(${PROJECT_NAME} STATIC ${SOURCE_FILES} ${STB_SOURCE_FILES})
 target_include_directories(${PROJECT_NAME} PUBLIC 
     include
     include/Anaar3D/
+    include/AnaarGL/
     "${STB_DIR}"
 )
 
