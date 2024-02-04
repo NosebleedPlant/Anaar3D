@@ -2,6 +2,9 @@ cmake_minimum_required(VERSION 3.28)
 project(Anaar3D VERSION 0.0)
 set(CMAKE_CXX_STANDARD 17)
 
+# Enable Testing
+include(CTest)
+
 # Build dependencies
 add_subdirectory(external)
 
@@ -32,4 +35,29 @@ target_link_libraries(${PROJECT_NAME}
     PUBLIC glm
     PUBLIC glad
 )
+
+# Add Applications 
 add_subdirectory(app)
+
+# Add Testing Directory
+if (BUILD_TESTING)
+    project(unit_tests)
+
+    # Get source files
+    file(GLOB TEST_FILES CONFIGURE_DEPENDS 
+        test/*.cpp 
+        test/*.hpp
+    )
+
+    add_executable(${PROJECT_NAME} 
+        ${TEST_FILES}
+    )
+
+    target_link_libraries(${PROJECT_NAME} PRIVATE GTest::gtest_main)
+    target_link_libraries(${PROJECT_NAME} PUBLIC Anaar3D)
+
+    include(GoogleTest)
+
+    # Finds all the Google tests associated with the executable
+    gtest_discover_tests(${PROJECT_NAME})
+endif()

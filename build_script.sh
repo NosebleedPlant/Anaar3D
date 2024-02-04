@@ -13,6 +13,11 @@ build(){
 run(){
   cd bin/
   ./Anaar3D_gui
+  cd ..
+}
+
+test(){
+  GTEST_COLOR=1 ctest --test-dir build --output-on-failure -j12
 }
 
 help(){
@@ -41,6 +46,10 @@ while [ "$#" -gt 0 ]; do
     ;;
     "-r" | "-run")
       run
+      ARG_USED=true
+    ;;
+    "-t" | "-run")
+      test
       ARG_USED=true
     ;;
     *)

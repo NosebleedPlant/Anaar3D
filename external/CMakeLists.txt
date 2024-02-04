@@ -14,3 +14,7 @@ project(glad)
 add_library(glad)
 target_sources(glad PRIVATE glad/src/glad.c)
 target_include_directories(glad PUBLIC glad/include)
+
+project(googletest)
+set(BUILD_GMOCK OFF CACHE BOOL "" FORCE)
+add_subdirectory(googletest)
