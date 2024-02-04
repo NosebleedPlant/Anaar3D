@@ -44,7 +44,10 @@ compile_commands.json
 CTestTestfile.cmake
 _deps
 
-# build directory
+# build and binary directory
 build/
+bin/
+
+# editor settings
 .vscode/
 .vs/

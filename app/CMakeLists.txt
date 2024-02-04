@@ -1,17 +1,11 @@
 cmake_minimum_required(VERSION 3.24)
-project(AnaarApp VERSION 0.0)
-
-file(GLOB SOURCE_FILES CONFIGURE_DEPENDS 
-    src/*.cpp 
-    src/*.hpp
+project(Anaar3D_gui VERSION 0.0)
+file(GLOB GUI_SOURCE_FILES CONFIGURE_DEPENDS 
+    gui/src/*.cpp 
+    gui/src/*.hpp
 )
 
-add_executable(${PROJECT_NAME} main.cpp ${SOURCE_FILES})
+set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR}/../bin)
 
-target_include_directories(${PROJECT_NAME} PRIVATE include)
-
-target_precompile_headers(${PROJECT_NAME} REUSE_FROM AnaarFramework)
-
-target_link_libraries(${PROJECT_NAME} PRIVATE glm)
-target_link_libraries(${PROJECT_NAME} PRIVATE AnaarFramework)
-
+add_executable(${PROJECT_NAME} ${GUI_SOURCE_FILES})
+target_link_libraries(${PROJECT_NAME} PRIVATE Anaar3D)
