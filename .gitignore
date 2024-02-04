@@ -47,6 +47,7 @@ _deps
 # build and binary directory
 build/
 bin/
+lib/
 
 # editor settings
 .vscode/

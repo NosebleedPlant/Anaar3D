@@ -1,0 +1,16 @@
+project(glfw)
+set(GLFW_BUILD_DOCS OFF CACHE BOOL "" FORCE)
+set(GLFW_BUILD_TESTS OFF CACHE BOOL "" FORCE)
+set(GLFW_BUILD_EXAMPLES OFF CACHE BOOL "" FORCE)
+set(GLFW_BUILD_WAYLAND OFF CACHE BOOL "" FORCE)
+add_subdirectory(glfw)
+
+project(glm)
+set(GLM_BUILD_TESTS OFF CACHE BOOL "" FORCE)
+set(GLM_BUILD_INSTALL OFF CACHE BOOL "" FORCE)
+add_subdirectory(glm)
+
+project(glad)
+add_library(glad)
+target_sources(glad PRIVATE glad/src/glad.c)
+target_include_directories(glad PUBLIC glad/include)
