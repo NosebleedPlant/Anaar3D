@@ -15,6 +15,13 @@ add_library(glad)
 target_sources(glad PRIVATE glad/src/glad.c)
 target_include_directories(glad PUBLIC glad/include)
 
+project(assimp)
+set(BUILD_SHARED_LIBS OFF CACHE BOOL "" FORCE)
+set(ASSIMP_NO_EXPORT ON CACHE BOOL "" FORCE)
+set(ASSIMP_BUILD_TESTS OFF CACHE BOOL "" FORCE)
+set(ASSIMP_INSTALL OFF CACHE BOOL "" FORCE)
+add_subdirectory(assimp)
+
 project(googletest)
 set(BUILD_GMOCK OFF CACHE BOOL "" FORCE)
 add_subdirectory(googletest)

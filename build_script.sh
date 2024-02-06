@@ -21,7 +21,7 @@ run(){
   cd ..
 }
 
-test(){
+run_test(){
   GTEST_COLOR=1 ctest --test-dir build --output-on-failure -j12
 }
 
@@ -54,7 +54,7 @@ while [ "$#" -gt 0 ]; do
       ARG_USED=true
     ;;
     "-t" | "-run")
-      test
+      run_test
       ARG_USED=true
     ;;
     *)
