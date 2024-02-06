@@ -2,6 +2,11 @@
 
 configure(){
   cmake -S ./ -B ./build
+  if test -f ./compile_commands.json; then
+    rm ./compile_commands.json
+    echo "file renewed"
+  fi
+  mv ./build/compile_commands.json ./
 }
 
 build(){
