@@ -44,6 +44,7 @@ const char* fragmentShader2Source = "#version 330 core\n"
 
 int Test::CreateAFContext_Raw()
 {
+    // initlaize glfw
     if (!glfwInit()) {
         std::cout << "FAILED to init GLFW" << std::endl;
         return -1;
@@ -53,6 +54,7 @@ int Test::CreateAFContext_Raw()
     glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, 2);
     glfwWindowHint(GLFW_OPENGL_PROFILE, GLFW_OPENGL_CORE_PROFILE);
 
+    // create glfw window
     GLFWwindow* window = glfwCreateWindow(800, 600, "LearnOpenGL", NULL, NULL);
     if (window == NULL) {
         std::cout << "FAILED to create GLFW Windw" << std::endl;
@@ -60,9 +62,11 @@ int Test::CreateAFContext_Raw()
         return -1;
     }
 
+    // focus the window
     glfwMakeContextCurrent(window);
     glfwSetFramebufferSizeCallback(window, framebuffer_size_callback);
 
+    // load in opengl function pointers
     if (!gladLoadGLLoader((GLADloadproc)glfwGetProcAddress)){
         std::cout << "FAILED to intialize GLAD" << std::endl;
         return -1;

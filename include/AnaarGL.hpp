@@ -1,5 +1,0 @@
-#include "context.hpp"
-#include "vertextBuffer.hpp"
-#include "indexBuffer.hpp"
-#include "vertexArray.hpp"
-#include "shader.hpp"

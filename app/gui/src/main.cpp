@@ -6,3 +6,6 @@ int main(){
     test.CreateAFContext_Raw();
     return 0;
 }
+
+//create context
+//pass in renderer
