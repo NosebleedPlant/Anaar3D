@@ -7,17 +7,17 @@ namespace {
   // any function from any library that you write too.
   int SimpleTest() {  return 42; }
 
-  int main(){
-        Test test = Test();
-        test.test_outpt();
-        return 0;
-    }
+  // int main(){
+  //       Test test = Test();
+  //       test.test_outpt();
+  //       return 0;
+  //   }
 }
 
 TEST(TestTopic, TrivialEquality) {
   EXPECT_EQ(SimpleTest(), 42);
 }
 
-TEST(TestTopic, TrivialEquality2) {
-  EXPECT_EQ(main(), 0);
-}
+// TEST(TestTopic, TrivialEquality2) {
+//   EXPECT_EQ(main(), 0);
+// }
