@@ -17,19 +17,18 @@ file(GLOB SOURCE_FILES CONFIGURE_DEPENDS
 )
 
 # Additional source files from header only libraries
-set(STB_DIR ${CMAKE_CURRENT_SOURCE_DIR}/external/stb)
-set(STB_SOURCE_FILES 
-    "${STB_DIR}/stb_image.h"
-)
+# set(STB_DIR ${CMAKE_CURRENT_SOURCE_DIR}/external/stb)
+# set(STB_SOURCE_FILES 
+#     "${STB_DIR}/stb_image.h"
+# )
 
 #build make files
 set(CMAKE_ARCHIVE_OUTPUT_DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR}/bin)
-add_library(${PROJECT_NAME} STATIC ${SOURCE_FILES} ${STB_SOURCE_FILES})
+add_library(${PROJECT_NAME} STATIC ${SOURCE_FILES})
 target_include_directories(${PROJECT_NAME} PUBLIC 
     include
     include/Anaar3D/
     include/AnaarGL/
-    "${STB_DIR}"
 )
 
 #link dependencies
@@ -38,6 +37,7 @@ target_link_libraries(${PROJECT_NAME}
     PUBLIC glm
     PUBLIC glad
     PUBLIC assimp
+    PUBLIC stb
 )
 
 # Add Applications 

@@ -22,6 +22,17 @@ set(ASSIMP_BUILD_TESTS OFF CACHE BOOL "" FORCE)
 set(ASSIMP_INSTALL OFF CACHE BOOL "" FORCE)
 add_subdirectory(assimp)
 
+project(stb)
+add_library(stb)
+set(STB_DIR ${CMAKE_CURRENT_SOURCE_DIR}/stb)
+file(GLOB STB_SRC CONFIGURE_DEPENDS 
+    ${CMAKE_CURRENT_SOURCE_DIR}/stb/*.c
+)
+target_sources(stb PRIVATE 
+    ${STB_SRC}
+)
+target_include_directories(stb PUBLIC "${STB_DIR}")
+
 project(googletest)
 set(BUILD_GMOCK OFF CACHE BOOL "" FORCE)
 add_subdirectory(googletest)
