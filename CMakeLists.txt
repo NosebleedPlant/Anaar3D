@@ -14,6 +14,9 @@ add_subdirectory(external)
 file(GLOB SOURCE_FILES CONFIGURE_DEPENDS 
     src/*.cpp 
     src/*.hpp
+    src/AnaarGL/*.cpp
+    src/Mesh/*.cpp
+    src/Primitive/*.cpp
 )
 
 # Additional source files from header only libraries
@@ -29,6 +32,8 @@ target_include_directories(${PROJECT_NAME} PUBLIC
     include
     include/Anaar3D/
     include/AnaarGL/
+    include/Mesh/
+    include/Primitive/
 )
 
 #link dependencies
@@ -41,7 +46,7 @@ target_link_libraries(${PROJECT_NAME}
 )
 
 # Add Applications 
-add_subdirectory(app)
+add_subdirectory(example)
 
 # Add Testing Directory
 if (BUILD_TESTING)
