@@ -2,6 +2,11 @@
 
 configure(){
   cmake -S ./ -B ./build
+  if test -f ./compile_commands.json; then
+    rm ./compile_commands.json
+    echo "file renewed"
+  fi
+  mv ./build/compile_commands.json ./
 }
 
 build(){
@@ -16,7 +21,7 @@ run(){
   cd ..
 }
 
-test(){
+run_test(){
   GTEST_COLOR=1 ctest --test-dir build --output-on-failure -j12
 }
 
@@ -49,7 +54,7 @@ while [ "$#" -gt 0 ]; do
       ARG_USED=true
     ;;
     "-t" | "-run")
-      test
+      run_test
       ARG_USED=true
     ;;
     *)

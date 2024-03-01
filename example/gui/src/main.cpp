@@ -1,4 +1,4 @@
-#include <Anaar3D/core.hpp>
+#include <Anaar3D/Core.hpp>
 
 int main(){
     Test test = Test();
@@ -6,3 +6,6 @@ int main(){
     test.CreateAFContext_Raw();
     return 0;
 }
+
+//create context
+//pass in renderer
