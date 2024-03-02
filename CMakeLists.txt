@@ -16,14 +16,7 @@ file(GLOB SOURCE_FILES CONFIGURE_DEPENDS
     src/*.hpp
     src/AnaarGL/*.cpp
     src/Mesh/*.cpp
-    src/Primitive/*.cpp
 )
-
-# Additional source files from header only libraries
-# set(STB_DIR ${CMAKE_CURRENT_SOURCE_DIR}/external/stb)
-# set(STB_SOURCE_FILES 
-#     "${STB_DIR}/stb_image.h"
-# )
 
 #build make files
 set(CMAKE_ARCHIVE_OUTPUT_DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR}/bin)
@@ -33,7 +26,6 @@ target_include_directories(${PROJECT_NAME} PUBLIC
     include/Anaar3D/
     include/AnaarGL/
     include/Mesh/
-    include/Primitive/
 )
 
 #link dependencies

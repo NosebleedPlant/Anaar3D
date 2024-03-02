@@ -3,12 +3,14 @@
 #include <glad/glad.h>
 #include <GLFW/glfw3.h>
 //custom
-#include "AnaarGL.hpp"
+#include "AnaarGL/VertexArray.hpp"
+#include "AnaarGL/VertexBuffer.hpp"
+#include "Mesh/IMesh.hpp"
 //libraries
 #include <iostream>
 
 namespace Mesh{
-    class TriangleMesh{
+    class TriangleMesh: public IMesh{
         private:
             float _vertices[9] = {
                -0.5f, -0.5f, 0.0f, // left  
@@ -20,6 +22,6 @@ namespace Mesh{
 
         public:
             TriangleMesh();
-            void draw();
+            virtual void draw() override;
     };
 }

@@ -1,6 +1,5 @@
 // Must include the gtest header to use the testing library
 #include <gtest/gtest.h>
-#include "../include/test.hpp"
 
 namespace {
   // We will test this dummy function but you can test

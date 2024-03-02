@@ -2,7 +2,7 @@
 //external
 #include <glad/glad.h>
 //custom
-#include "VertexBuffer.hpp"
+#include "AnaarGL/VertexBuffer.hpp"
 
 namespace AnaarGL{
     class VertexArray{

@@ -1,4 +1,5 @@
 #include "AnaarGL/Shader.hpp"
+
 using namespace AnaarGL;
 
 void Shader::_check_compile(GLuint shader, std::string type)
