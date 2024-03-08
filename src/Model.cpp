@@ -6,6 +6,6 @@ Model::Model(Mesh::IMesh* mesh, AnaarGL::Shader* shader){
 } 
 
 void Model::draw(){
-    _shader->use();
+    AnaarGL::Shader::use(*this->_shader);
     _mesh->draw();
 };

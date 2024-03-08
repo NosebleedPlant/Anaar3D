@@ -7,11 +7,12 @@ namespace AnaarGL{
         private:
             GLuint _render_id;
         public:
-            VertexBuffer(GLsizeiptr size, GLfloat* vertices);
+            VertexBuffer(GLsizeiptr size, GLfloat* vertices, GLenum draw_mode);
             
-            GLuint get_id();
-            void bind();
-            void unbind();
-            void delete_buffer();
+            static void bind(VertexBuffer &vbo);
+            static void unbind();
+            static void delete_buffer(VertexBuffer &vbo);
+            
+            static GLuint get_id(VertexBuffer &vbo);
     };
 }

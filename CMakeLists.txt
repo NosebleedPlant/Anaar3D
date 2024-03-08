@@ -4,6 +4,14 @@ set(CMAKE_CXX_STANDARD 17)
 
 set(CMAKE_EXPORT_COMPILE_COMMANDS ON)
 
+if (MSVC)
+    # warning level 4
+    add_compile_options(/W4)
+else()
+    # additional warnings
+    add_compile_options(-Wall -g)
+endif()
+
 # Enable Testing
 include(CTest)
 
@@ -33,7 +41,7 @@ target_link_libraries(${PROJECT_NAME}
     PUBLIC glfw
     PUBLIC glm
     PUBLIC glad
-    PUBLIC assimp
+    # PUBLIC assimp
     PUBLIC stb
 )
 

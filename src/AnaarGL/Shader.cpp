@@ -84,14 +84,14 @@ Shader::Shader(const char* vertexPath, const char* fragmentPath)
     glDeleteShader(fragment);
 }
 
-void Shader::use() const{ 
-    glUseProgram(this->id); 
+void Shader::use(Shader &shader){ 
+    glUseProgram(shader.id); 
 }
 
-void Shader::set_bool(const std::string &name, bool value) const{         
-    glUniform1i(glGetUniformLocation(this->id, name.c_str()), (int)value); 
+void Shader::set_bool(Shader &shader, const std::string &name, bool value){         
+    glUniform1i(glGetUniformLocation(shader.id, name.c_str()), (int)value); 
 }
 
-void Shader::set_float(const std::string &name, float value) const{         
-    glUniform1f(glGetUniformLocation(this->id, name.c_str()), value); 
+void Shader::set_float(Shader &shader, const std::string &name, float value){         
+    glUniform1f(glGetUniformLocation(shader.id, name.c_str()), value); 
 }
